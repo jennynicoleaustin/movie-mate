@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/5/spacelab/bootstrap.min.css">
+    <link rel="stylesheet" href="movies.css">
+    <script src="https://kit.fontawesome.com/52efbfd496.js" crossorigin="anonymous"></script>
+    <title>Red Sloth Movies</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!--HEADER-->
+<div class="d-flex justify-content-center align-items-center my-4">
+    <p id="headingLogo" class="h1 logo pt-4 pe-3"> Red Sloth</p>
+    <img src="redsloth.jpeg" alt="" width="100" height="100" class="">
+    <p id="headingLogo2" class="h1 logo pt-4"> Movies</p>
+</div>
+<hr>
+<!--End HEADER-->
+
+<!--LOADING DIV-->
+<div class="container-fluid loader" id="loader-container"></div>
+<!--END LOADING DIV-->
+<output id="output"></output>
+
+<!--CONTAINER FOR ALL MOVIE THINGS HIDDEN UNTIL LOADING FINISHES-->
+<div class="container-fluid hidden " id="movie-container">
+
+    <!--NAVBAR FILTER NAVBAR-->
+    <!--    <div class="container-fluid d-flex">-->
+    <!--        &lt;!&ndash;SORT BY DROPDOWN&ndash;&gt;-->
+    <!--        <div class="dropdown" id="sort-by">-->
+    <!--            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"-->
+    <!--                    aria-expanded="false">-->
+    <!--                Sort By-->
+    <!--            </button>-->
+    <!--            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button">Newest</button>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button">A-Z</button>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button">Highest Rating</button>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button">Lowest Rating</button>-->
+    <!--                </li>-->
+    <!--            </ul>-->
+    <!--        </div> &lt;!&ndash;SORT BY DIV CLOSER&ndash;&gt;-->
+
+    <!--        &lt;!&ndash;GENRE DROPDOWN&ndash;&gt;-->
+    <!--        <div class="dropdown" id="genre">-->
+    <!--            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu5" data-bs-toggle="dropdown"-->
+    <!--                    aria-expanded="false">-->
+    <!--                Genre-->
+    <!--            </button>-->
+    <!--            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button"><input type="checkbox" class="form-check-input me-1">All</button>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button"><input type="checkbox" class="form-check-input me-1">Action-->
+    <!--                    </button>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button"><input class="me-1" type="checkbox" class="form-check-input">Drama-->
+    <!--                    </button>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button"><input type="checkbox"class="form-check-input me-1">Adventure-->
+    <!--                    </button>-->
+    <!--                </li>-->
+    <!--                <li>-->
+    <!--                    <button class="dropdown-item" type="button"><input type="checkbox"-->
+    <!--class="form-check-input me-1">Crime-->
+    <!--                    </button>-->
+    <!--                </li>-->
+    <!--            </ul>-->
+    <!--        </div> &lt;!&ndash; genre div closer &ndash;&gt;-->
+    <!--        &lt;!&ndash;GENRE DROPDOWN ENDS &ndash;&gt;-->
+
+    <!--ADD MOVIE BUTTON-->
+    <button type="button m-2" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addMovie">
+        ADD A MOVIE
+    </button> <!--ADD MOVIE BUTTON ENDS-->
+
+
+    <!--    Test edit modal launch-->
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" id="editTestButton"
+            data-bs-target="#editMovie">
+        EDIT MOVIE
+    </button>
+</div> <!-- NAV BAR DIV CLOSING -->
+
+<!--EDIT MOVIE MODAL-->
+<div class="modal fade" id="editMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editMovieHead">EDIT MOVIE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editMovieForm" method="post" action="#">
+                    <div class="mb-3">
+                        <label for="movieTitle" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="editMovieTitle">
+                        <div id="editMovieTitleHelp" class="form-text">Edit the movie title</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="director" class="form-label">Director</label>
+                        <input type="text" class="form-control" id="editDirector">
+                        <div id="editDirectorHelp" class="form-text">Edit the director name</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="text" class="form-control" id="editRating">
+                        <div id="editRatingHelp" class="form-text">Edit your personal rating</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="editID">
+                        <div id="idHelp" class="form-text">This field cannot be edited</div>
+                    </div>
+                </form> <!-- edit movie form -->
+            </div> <!-- edit movie modal closing div -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button form="editMovieForm" id="saveEditMovie" onclick="editRequest(id)" type="button"
+                        class="btn btn-primary" data-bs-dismiss="modal">Save
+                    <!-- Need to figure out how to pass id inside the onclick function -->
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--EDIT MOVIE MODAL ENDS-->
+
+<!--    ADD MOVIE MODAL-->
+<div class="modal fade" id="addMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ADD YOUR FAVORITE MOVIE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addMovieForm" method="post" action="#">
+                    <div class="mb-3">
+                        <label for="movieTitle" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="movieTitle">
+                        <div id="movieTitleHelp" class="form-text">Add the title of your favorite movie</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="director" class="form-label">Director</label>
+                        <input type="text" class="form-control" id="director">
+                        <div id="directorHelp" class="form-text">Add the director's first and last name</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="text" class="form-control" id="rating">
+                        <div id="RatingHelp" class="form-text">Add your personal rating</div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button form="addMovieForm" id="saveNewMovie" onclick="refreshMovieList()" type="button"
+                        class="btn btn-primary" data-bs-dismiss="modal">Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--ADD MOVIE MODAL ENDS-->
+
+<!--START MOVIE TILES-->
+<div class="container-fluid d-flex movie-grid-container justify-content-center" id="movie-grid">
+    <div class="movie-tiles-wrap justify-content-center d-flex row" id="movie-tiles-container">
+        <!--MOVIE CARD LAYOUT-->
+    </div>
+    <!--END CONTAINER FOR ALL MOVIE THINGS-->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+<script src="movies.js"></script>
+
+</body>
+</html>
