@@ -1,11 +1,8 @@
 "use strict";
 
-// const getEditButton = document.querySelector('#testingEdit')
-// function testingEdit () {
-//     getEditButton.dataset.target = '#editMovie'
-//     getEditButton.dataset.toggle = 'modal'
-//     console.log('something happened')}
-// testingEdit();x
+//TODO: implement firebase for a backend to store all the saved movies
+
+//TODO: implement a real movie API to grab movies for the page (Add would populate options as you type to add)
 
 // URL for Glitch fake Movies API
 const urlGlitch = 'https://hissing-acute-crafter.glitch.me/movies'
@@ -22,14 +19,11 @@ const editForm = document.querySelector('#editMovieForm')
 //REFRESH MOVIE RUNS ON THE CLICK OF 'SAVE' IN ADD NEW MOVIE
 const refreshMovieList = async () => {
     await getAddValues(); // post request for the new movie
-    // await deleteMovie()
-    //await movieTileContainer.setHTML('');
     await allMoviesAdded(); // get all movie data and populate cards
     await addForm.reset(); // resets the form so fields empty
 
 };
 
-// const editButton = document.querySelectorAll('#cardButtonEdit')
 
 // ADD NEW MOVIE DATA TO SERVER (POST REQUEST)
 const getAddValues = async () => {
@@ -101,10 +95,6 @@ function getDelete() { // this adds the event listener to each particular button
     }
 }
 
-// function assignEdit () {
-// editButton.dataset.target = '#editMovie'
-// }
-
 // EDIT BUTTON FUNCTIONALITY
 function getEdit() {
     const editButtons = document.querySelectorAll('.cardButtonEdit')
@@ -115,6 +105,8 @@ function getEdit() {
         }, false)
     }
 }
+
+//TODO: remove timeout on loader and add functionality that it actually shows loader message ONLY when data is taking a while to render
 
 // SHOW/HIDE LOADER AND MOVIES
 // TIMEOUT FUNCTION
@@ -187,10 +179,3 @@ async function editRequest(id) {
     }
 }
 
-
-//
-// // FUNCTION TO OPEN EDIT MODAL
-//
-// const autoFillEdit = function (id, director, title, rating) {
-//
-// }
