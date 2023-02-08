@@ -70,7 +70,7 @@ const allMoviesAdded = async () => {
                                 </div>
                                 </div>
 <div class="footer align-self-end justify-content-end d-flex">
-             <button class="cardButtonEdit btn btn-secondary m-1" id="edit${movie.id}" type="button">
+             <button class="cardButtonEdit btn btn-secondary m-1" id="${movie.id}" type="button">
                   <i class="fa-solid fa-wand-magic-sparkles pe-1"></i> Edit</button>
              <button class="cardButtonDelete btn btn-secondary m-1" id="${movie.id}" type="button"><i class="fa-solid fa-trash-can pe-2"></i>Delete</button>
 </div>`
@@ -165,25 +165,47 @@ async function editRequest(id) {
     }
 }
 
+
+//ToDO: Get edit form to prepopulate from the edit button
+//-- need get single movie info from the id...
+
+// EDIT MODAL FORM FIELDS
+let director = document.querySelector("#editDirector");
+let title = document.querySelector('#editMovieTitle');
+let rating = document.querySelector('#editRating');
+let id = document.querySelector('#editID');
+
+const getMovieData = async (movieId) => {
+    try {
+        console.log(movieId)
+        const res = await axios.get(`${urlGlitch}?id=${movieId}`);
+        console.log(res.data)
+        return res.data; // res = an array with each movie as an object
+    } catch (e) {
+        console.log("ERROR", e);
+    }
+}
+
+getMovieData(4);
+
+const setEditForm = (movie) => {
+    director.value = movie.director;
+    title.value = movie.title;
+    rating.value = movie.rating;
+    id.value = movie.id;
+}
+let editModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('editMovie')) // Returns a Bootstrap modal instance
+
 // EDIT BUTTON on card FUNCTIONALITY
 function getEdit() {
     const editButtons = document.querySelectorAll('.cardButtonEdit')
     for (let button of editButtons) {
         let movieId = button.id
-        button.addEventListener("click", function () {
-            console.log(movieId) // need function that opens the edit modal
+        button.addEventListener("click", async function () {
+            const movie = await getMovieData(movieId);
+            console.log(movie[0])
+            setEditForm(movie[0])
+            editModal.show() // this works
         }, false)
     }
-}
-//ToDO: Get edit form to prepopulate from the edit button
-//-- need get single movie info from the id...
-
-// EDIT MODAL FORM FIELDS
-const director = document.querySelector("#editDirector").value;
-const title = document.querySelector('#editMovieTitle').value;
-const rating = document.querySelector('#editRating').value;
-const id = document.querySelector('#editID').value;
-
-const setEditForm = (movie) => {
-
 }
