@@ -16,12 +16,12 @@ const addForm = document.querySelector('#addMovieForm')
 // GRAB EDIT MOVIE FORM
 const editForm = document.querySelector('#editMovieForm')
 
+
 //REFRESH MOVIE RUNS ON THE CLICK OF 'SAVE' IN ADD NEW MOVIE
 const refreshMovieList = async () => {
     await getAddValues(); // post request for the new movie
     await allMoviesAdded(); // get all movie data and populate cards
     await addForm.reset(); // resets the form so fields empty
-
 };
 
 
@@ -84,7 +84,7 @@ const allMoviesAdded = async () => {
 allMoviesAdded(); // initial call to retrieve all the movie data and populate the cards
 
 // DELETE BUTTON FUNCTIONALITY
-function getDelete() { // this adds the event listener to each particular button and passes the deleterequest function with the id as a parameter
+function getDelete() { // this adds the event listener to each particular button and passes the deleteRequest function with the id as a parameter
     const deleteButtons = document.querySelectorAll('.cardButtonDelete')
     for (let button of deleteButtons) {
         let movieId = button.id
