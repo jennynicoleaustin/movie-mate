@@ -95,19 +95,6 @@ function getDelete() { // this adds the event listener to each particular button
     }
 }
 
-// EDIT BUTTON FUNCTIONALITY
-function getEdit() {
-    const editButtons = document.querySelectorAll('.cardButtonEdit')
-    for (let button of editButtons) {
-        let movieId = button.id
-        button.addEventListener("click", function () {
-            console.log(movieId) // need function that opens the edit modal
-        }, false)
-    }
-}
-
-//TODO: remove timeout on loader and add functionality that it actually shows loader message ONLY when data is taking a while to render
-
 // SHOW/HIDE LOADER AND MOVIES
 // TIMEOUT FUNCTION
 function timeout(ms) {
@@ -178,3 +165,25 @@ async function editRequest(id) {
     }
 }
 
+// EDIT BUTTON on card FUNCTIONALITY
+function getEdit() {
+    const editButtons = document.querySelectorAll('.cardButtonEdit')
+    for (let button of editButtons) {
+        let movieId = button.id
+        button.addEventListener("click", function () {
+            console.log(movieId) // need function that opens the edit modal
+        }, false)
+    }
+}
+//ToDO: Get edit form to prepopulate from the edit button
+//-- need get single movie info from the id...
+
+// EDIT MODAL FORM FIELDS
+const director = document.querySelector("#editDirector").value;
+const title = document.querySelector('#editMovieTitle').value;
+const rating = document.querySelector('#editRating').value;
+const id = document.querySelector('#editID').value;
+
+const setEditForm = (movie) => {
+
+}
