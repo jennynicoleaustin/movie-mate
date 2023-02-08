@@ -116,11 +116,10 @@ function timeout(ms) {
 
 // HIDE LOADER
 const toggleLoading = async () => {
-    await timeout(1200)
     let loader = document.querySelector('#loader-container')
     loader.classList.add('hidden')
 }
-
+toggleLoading();
 // SHOW MOVIE CONTAINER
 const showMovies = async () => {
     // await timeout(1300)
