@@ -21,21 +21,6 @@
 <hr>
 <!--End HEADER-->
 
-<!--LOADING DIV-->
-<div class="container-fluid loader" id="loader-container">
-    Loading...
-</div>
-<!--END LOADING DIV-->
-
-<!--CONTAINER FOR ALL MOVIE THINGS HIDDEN UNTIL LOADING FINISHES-->
-<div class="container-fluid hidden" id="movie-container">
-
-    <!--ADD MOVIE BUTTON-->
-    <button type="button m-2" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addMovie">
-        ADD A MOVIE
-    </button> <!--ADD MOVIE BUTTON ENDS-->
-</div> <!-- NAV BAR DIV CLOSING -->
-
 <!--EDIT MOVIE MODAL-->
 <div class="modal fade" id="editMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -115,12 +100,27 @@
 </div>
 <!--ADD MOVIE MODAL ENDS-->
 
+<!--LOADING DIV-->
+<div class="container-fluid loader" id="loader-container">
+    <h1>Loading...</h1>
+</div>
+<!--END LOADING DIV-->
+
+<!--CONTAINER FOR ALL MOVIE THINGS HIDDEN UNTIL LOADING FINISHES-->
+<div class="container-fluid hidden" id="movie-container">
+    <div>
+        <!--ADD MOVIE BUTTON-->
+        <button type="button m-2" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addMovie">
+            ADD A MOVIE
+        </button>
+    </div>
 <!--START MOVIE TILES-->
 <div class="container-fluid d-flex movie-grid-container justify-content-center" id="movie-grid">
     <div class="movie-tiles-wrap justify-content-center d-flex row" id="movie-tiles-container">
         <!--MOVIE CARD LAYOUT-->
     </div>
     <!--END CONTAINER FOR ALL MOVIE THINGS-->
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"

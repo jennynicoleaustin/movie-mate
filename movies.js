@@ -13,11 +13,7 @@ const movieTileContainer = document.querySelector("#movie-tiles-container");
 // GRAB ADD MOVIE FORM
 const addForm = document.querySelector('#addMovieForm')
 
-// GRAB EDIT MOVIE FORM
-const editForm = document.querySelector('#editMovieForm')
-
-
-//REFRESH MOVIE RUNS ON THE CLICK OF 'SAVE' IN ADD NEW MOVIE
+// REFRESH MOVIE RUNS ON THE CLICK OF 'SAVE' IN ADD NEW MOVIE
 const refreshMovieList = async () => {
     await getAddValues(); // post request for the new movie
     await allMoviesAdded(); // get all movie data and populate cards
@@ -106,10 +102,8 @@ const toggleLoading = async () => {
     let loader = document.querySelector('#loader-container')
     loader.classList.add('hidden')
 }
-toggleLoading();
 // SHOW MOVIE CONTAINER
 const showMovies = async () => {
-    // await timeout(1300)
     let movieContainer = document.querySelector('#movie-container')
     movieContainer.classList.remove('hidden')
 }
