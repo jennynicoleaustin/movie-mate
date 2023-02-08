@@ -165,10 +165,6 @@ async function editRequest(id) {
     }
 }
 
-
-//ToDO: Get edit form to prepopulate from the edit button
-//-- need get single movie info from the id...
-
 // EDIT MODAL FORM FIELDS
 let director = document.querySelector("#editDirector");
 let title = document.querySelector('#editMovieTitle');
