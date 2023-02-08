@@ -70,9 +70,9 @@ const allMoviesAdded = async () => {
                                 </div>
                                 </div>
 <div class="footer align-self-end justify-content-end d-flex">
-             <button class="cardButtonEdit m-1" id="edit${movie.id}" type="button">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> Edit</button>
-             <button class="cardButtonDelete m-1" id="${movie.id}" type="button"><i class="fa-solid fa-trash-can"></i>Delete</button>
+             <button class="cardButtonEdit btn btn-secondary m-1" id="edit${movie.id}" type="button">
+                  <i class="fa-solid fa-wand-magic-sparkles pe-1"></i> Edit</button>
+             <button class="cardButtonDelete btn btn-secondary m-1" id="${movie.id}" type="button"><i class="fa-solid fa-trash-can pe-2"></i>Delete</button>
 </div>`
             );
         movieTileContainer.append(createTile) // adds all the new creatTile divs into the movie til container
